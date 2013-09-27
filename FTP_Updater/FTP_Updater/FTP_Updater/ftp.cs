@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Net;
 using System.IO;
-
+using Laedit.Net;
 namespace FTP_Updater
 {
     class ftp
@@ -16,10 +16,13 @@ namespace FTP_Updater
         private FtpWebResponse ftpResponse = null;
         private Stream ftpStream = null;
         private int bufferSize = 2048;
+        public FTPClient ftpClient;
 
         /* Construct Object */
-        public ftp(string hostIP, string userName, string password) { host = hostIP; user = userName; pass = password; }
+        public ftp(string hostIP, string userName, string password) { host = "ftp://" + hostIP; user = userName; pass = password;
+        ftpClient = new FTPClient(hostIP, user, pass);
 
+        }
         /* Download File */
         public void download(string remoteFile, string localFile)
         {
@@ -52,15 +55,16 @@ namespace FTP_Updater
                         localFileStream.Write(byteBuffer, 0, bytesRead);
                         bytesRead = ftpStream.Read(byteBuffer, 0, bufferSize);
                     }
+                    Console.WriteLine("Archivo '" + remoteFile + "' descargado exitosamente.");
                 }
-                catch (Exception ex) { Console.WriteLine(ex.ToString()); }
+                catch (Exception ex) { Console.WriteLine("En archivo: '" + remoteFile + "' " + ex.ToString()); }
                 /* Resource Cleanup */
                 localFileStream.Close();
                 ftpStream.Close();
                 ftpResponse.Close();
                 ftpRequest = null;
             }
-            catch (Exception ex) { Console.WriteLine(ex.ToString()); }
+            catch (Exception ex) { Console.WriteLine("En archivo: '"+ remoteFile + "' "+ex.ToString()); }
             return;
         }
 
@@ -301,7 +305,7 @@ namespace FTP_Updater
             /* Return an Empty string Array if an Exception Occurs */
             return new string[] { "" };
         }
-
+        
         /* List Directory Contents in Detail (Name, Size, Created, etc.) */
         public string[] directoryListDetailed(string directory)
         {

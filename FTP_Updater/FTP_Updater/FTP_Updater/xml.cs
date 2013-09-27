@@ -11,7 +11,9 @@ namespace FTP_Updater
         public static string password = "";
         public static string servidor = "";
         public static List<string> lista_archivos = new List<string>();
+        public static List<string> lista_folder = new List<string>();
         public static bool debug;
+        public static int tiempo_debug;
         public static string inicializa_parametros()
         {
             XmlTextReader reader = new XmlTextReader("configuracion.xml");
@@ -69,7 +71,30 @@ namespace FTP_Updater
                                         }
                                     }
                                 }
+                            }
+                            if (reader.Name.ToUpper() == "LISTA_FOLDER")
+                            {
+                                string archivos = reader.ReadElementContentAsString();
+                                string palabra = "";
+                                int c = 0;
+                                foreach (char x in archivos.ToCharArray())
+                                {
+                                    palabra += x;
+                                    if (x == '\n')
+                                    {
 
+                                        if (!string.IsNullOrEmpty(palabra.Trim()))
+                                        {
+                                            lista_folder.Add(palabra.Trim());
+                                            palabra = "";
+                                            c++;
+                                        }
+                                    }
+                                }
+                            }
+                            if (reader.Name.ToUpper() == "TIEMPO")
+                            {
+                                tiempo_debug = reader.ReadElementContentAsInt();
                             }
                         }
                         catch(Exception ex)
