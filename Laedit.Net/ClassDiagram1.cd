@@ -1,0 +1,67 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Laedit.Net.DownloadFileOrCreateDirectoryEventArgs">
+    <Position X="9.75" Y="0.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAQAAAAAAAAA=</HashCode>
+      <FileName>DownloadFileOrCreateDirectoryEventArgs.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Laedit.Net.FTPClient">
+    <Position X="0.5" Y="0.75" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>QkAAAAAAQRADJAADLQAIKBgASBEiBAA3AMUgAgACgMA=</HashCode>
+      <FileName>FTPClient.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Laedit.Net.FTPException">
+    <Position X="4" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>FTPException.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Laedit.Net.FTPResponseInt64EventArgs">
+    <Position X="8" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>FTPResponseInt64EventArgs.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Laedit.Net.FTPResponseStringArrayEventArgs">
+    <Position X="6.25" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>FTPResponseStringArrayEventArgs.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Laedit.Net.FTPResponseStringArrayListEventArgs">
+    <Position X="8" Y="0.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>FTPResponseStringArrayListEventArgs.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Laedit.Net.FTPResponseStringEventArgs">
+    <Position X="6.25" Y="0.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>FTPResponseStringEventArgs.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Laedit.Net.Web">
+    <Position X="11.5" Y="1" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ACAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAAEAAABAAAA=</HashCode>
+      <FileName>Web.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Enum Name="Laedit.Net.FTPFileType">
+    <Position X="4" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAABAA=</HashCode>
+      <FileName>FTPFileType.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
