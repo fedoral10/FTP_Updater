@@ -4,7 +4,7 @@
   <contrasenia>F2aGL5MH6fI=</contrasenia>
   <servidor>192.168.1.100</servidor>
   <debug>S</debug>
-  <tiempo>30</tiempo>
+  <tiempo>3000</tiempo>
   <lista_archivos>
     PresupuestoINE.exe
     PresupuestoINE.exe.config

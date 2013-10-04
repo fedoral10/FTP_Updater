@@ -85,7 +85,8 @@ namespace FTP_Updater
                 }
                 catch (Exception ex)
                 {
-                    Console.WriteLine("En folder: '"+ folder + "' "+ex.Message);                }
+                    Console.WriteLine("En folder: '"+ folder + "' "+ex.Message);
+                }
            }
 
             DateTime folder_pc = File.GetLastWriteTime(folder);

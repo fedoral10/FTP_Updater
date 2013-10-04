@@ -220,8 +220,8 @@ namespace FTP_Updater
                 /* Return File Created Date Time */
                 return fileInfo;
             }
-            catch (Exception ex) { 
-                Console.WriteLine(ex.ToString());
+            catch (Exception ex) {
+                Console.WriteLine("En archivo '"+fileName+"' "+ex.ToString());
             }
             /* Return an Empty string Array if an Exception Occurs */
             return new DateTime();

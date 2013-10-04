@@ -99,7 +99,7 @@ namespace FTP_Updater
                         }
                         catch(Exception ex)
                         {
-                            Console.Write(ex.Message);
+                            Console.Write("Error en xml: "+ ex.Message);
                         }
                         //Console.Write(reader.Value);
                         break;

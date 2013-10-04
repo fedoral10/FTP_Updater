@@ -118,9 +118,19 @@ namespace Laedit.Net
         {
             Boolean flag = false;
 
-            if (detailFile[0][0] == 'd' || detailFile[1].ToLower() == "<dir>")
+            if (detailFile.Length > 1)
             {
-                flag = true;
+                if (detailFile[0].StartsWith("d") || detailFile[1].ToLower() == "<dir>")
+                {
+                    flag = true;
+                }
+            }
+            if (detailFile.Length == 1)
+            {
+                if (detailFile[0].StartsWith("d"))
+                {
+                    flag = true;
+                }
             }
 
             return flag;
@@ -173,9 +183,11 @@ namespace Laedit.Net
             {
                 for (int i = 0; i < detailFiles.Count; i++)
                 {
-                    int index = ((String[])detailFiles[i]).Length - 1;
-                    if (((String[])detailFiles[i])[index] != "." && ((String[])detailFiles[i])[index] != "..")
-                    {
+                    int index = 0;//((String[])detailFiles[i]).Length - 1;
+                        index = ((String[])detailFiles[i]).Length - 1;
+
+                    /*if (((String[])detailFiles[i])[index] != "." && ((String[])detailFiles[i])[index] != "..")
+                    {*/
                         if (!this.IsDetailFileFolder(detailFiles[i]))
                         {
                             this.OnDownloadFilesOrCreateDirectory(folder + ((String[])detailFiles[i])[index], FTPFileType.File);
@@ -189,7 +201,7 @@ namespace Laedit.Net
                             Directory.CreateDirectory(pathOut + ((String[])detailFiles[i])[index]);
                             this.DownloadFilesRecurs(folder, ((String[])detailFiles[i])[index], pathOut);
                         }
-                    }
+                    //}
                 }
             }
             else
@@ -456,7 +468,8 @@ namespace Laedit.Net
             {
                 this.InitializeFTPRequest(folder);
                 //UseBinary false
-                this._ftpRequest.Method = WebRequestMethods.Ftp.ListDirectoryDetails;
+                //this._ftpRequest.Method = WebRequestMethods.Ftp.ListDirectoryDetails;
+                this._ftpRequest.Method = WebRequestMethods.Ftp.ListDirectory;
                 WebResponse response = this._ftpRequest.GetResponse();
 
                 using (StreamReader reader = new StreamReader(response.GetResponseStream()))
@@ -465,19 +478,42 @@ namespace Laedit.Net
 
                     while ((line = reader.ReadLine()) != null)
                     {
-                        String[] entry = line.Split(new String[] { "  " }, StringSplitOptions.RemoveEmptyEntries);
-
-                        String[] trueEntry = new String[entry.Length];
-
-                        for (int i = 0; i < entry.Length; i++)
+                        //System.Text.RegularExpressions.Regex reg = new System.Text.RegularExpressions.Regex(@"[0-9][0-9] [a-zA-Z0-9~@#\^\$&\*\(\)-_\+=\[\]\{\}\|\\,\.\?\s]+[\.|\s|\w+]+\Z");
+                        System.Text.RegularExpressions.Regex reg = new System.Text.RegularExpressions.Regex(@"/[_]*\w*.+.*");
+                        string entry="";
+                        //string[] spliting = line.Split(new string[] { " " }, StringSplitOptions.RemoveEmptyEntries);
+ 
+                        if (reg.Matches(line).Count > 0)
                         {
-                            trueEntry[i] = entry[i].Trim();
+                            entry = reg.Matches(line)[0].Value;
+                         // break;
                         }
+                        entry = entry.Substring(1,entry.Length -1);
+ 
+                        
 
-                        String[] temp = entry[entry.Length - 1].Split(new String[] { " " }, StringSplitOptions.RemoveEmptyEntries);
+                        
 
-                        trueEntry[trueEntry.Length - 1] = temp[temp.Length - 1];
-                        trueEntry[trueEntry.Length - 2] = trueEntry[trueEntry.Length - 2].Replace(" " + trueEntry[trueEntry.Length - 1], "");
+                        //String[] entry = line.Split(new String[] { "  " }, StringSplitOptions.RemoveEmptyEntries);
+
+                        String[] trueEntry = new String[1];
+
+                        int len = entry.Length;
+                        if(!string.IsNullOrEmpty(entry))
+                        trueEntry[0] = entry;
+
+                        //for (int i = 0; i < entry.Length; i++)
+                        //{
+                        //    trueEntry[i] = entry.Trim();
+                        //}
+
+                        //String[] temp = entry[entry.Length - 1].Split(new String[] { " " }, StringSplitOptions.RemoveEmptyEntries);
+
+                        //trueEntry[trueEntry.Length - 1] = temp[temp.Length - 1];
+                        //trueEntry = entry;
+                        //trueEntry[trueEntry.Length - 2] = trueEntry[trueEntry.Length - 2].Replace(" " + trueEntry[trueEntry.Length - 1], "");
+
+
 
                         downloadFiles.Add(trueEntry);
                     }
